@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+    <title>Introduction to React</title>
+    <meta name="description" content="A talk about the React world.">
+    <meta name="author" content="Benjamim Sonntag">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+
+  <body>
+		<div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Introduction to React</h1>
+        </section>
+
+        <section>
+					<h2>About me</h2>
+
+					<p>Benjamim Sonntag</p>
+					<p>Engenharia Informática @ Universidade do Minho</p>
+					<p>Frontend developer @ Seegno</p>
+				</section>
+
+        <section>
+					<section>
+	          <h2>Some questions first...</h2>
+
+						<ul>
+							<li class="fragment">Can you read english?</li>
+							<li class="fragment">Do you know JavaScript?</li>
+							<li class="fragment">Do you know Node?</li>
+							<li class="fragment">Have you used any libraries?</li>
+							<li class="fragment">Do you know ES6?</li>
+						</ul>
+
+            <aside class="notes">
+							Antes de começar preciso de vos fazer algumas perguntas primeiro.
+
+							Os meus slides estão todos em inglês. Se houver alguma coisa que não percebam, perguntem.
+
+							React é uma biblioteca em JavaScript, por isso é necessário conhecer JavaScript.
+
+							Não é necessário conhecer Node, mas para usar as ferramentas necessárias para usar React precisam de ter Node instalado.
+
+							Algumas funcionalidades desta nova sintaxe são necessárias para usar React, como por exemplo as classes e os módulos.
+            </aside>
+	        </section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## ES6 Class example
+
+							```js
+								class Person {
+									constructor(firstName, lastName) {
+										this.firstName = firstName;
+										this.lastName = lastName;
+									}
+
+									fullName() {
+										return this.firstName + this.lastName;
+									}
+								}
+
+								const person = new Person('Benjamim', 'Sonntag');
+
+								person.fullName(); // 'Benjamim Sonntag'
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## ES6 Arrow function example
+
+							```js
+								() => {
+									return 'Hello world!';
+								};
+
+								() => 'Hello world!';
+
+								// Same as (almost):
+
+								function () {
+									return 'Hello world!';
+								}
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## ES6 Modules
+
+							```js
+								import React, { Component } from 'react';
+
+								import { render } from 'react-dom';
+							```
+						</script>
+					</section>
+				</section>
+
+        <section data-background="react-logo.svg" data-background-size="300px" data-background-transition="convex">
+        </section>
+
+        <section>
+          <section>
+            <h2>React</h2>
+
+            <p>"A JavaScript library for building <i>user interfaces</i>."</p>
+            <p>Made by Facebook</p>
+          </section>
+
+          <section>
+            <h2>Just the UI</h2>
+
+            <p>Makes no assumptions about the rest of the application.</p>
+          </section>
+
+          <section>
+            <h2>Super simple</h2>
+
+            <p>Doesn't have a huge list of features.</p>
+            <p>Fast to start using.</p>
+          </section>
+
+          <section>
+            <h2>"Learn once, write anywhere"</h2>
+
+						<p>React was built for the web, but can also be used to create mobile or desktop application.</p>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+							## JSX
+
+							```js
+							const element = (
+								<h1>
+									Hello world!
+								</h1>
+							);
+							```
+
+							JSX produces React "elements".
+						</script>
+          </section>
+
+          <section>
+						<h2>Requirements</h2>
+
+						<ul>
+							<li class="fragment">
+								Package manager:
+								<span class="fragment">Npm or Yarn</span>
+							</li>
+							<li class="fragment">
+								Bundler:
+								<span class="fragment">Webpack or Browserify</span>
+							</li>
+							<li class="fragment">
+								Compiler:
+								<span class="fragment">Babel</span>
+							</li>
+						</ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Components</h2>
+
+						<p>React is all about writing components.</p>
+						<!--<p>Components unify view with logic.</p>-->
+						<p>They let you split your application into small pieces.</p>
+          </section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## What do they look like?
+
+							```js
+								import React, { Component } from 'react';
+
+								// Functional component
+
+								function Welcome() {
+									return <h1>Hello world!</h1>;
+								}
+
+								// Class component
+
+								class Welcome extends Component {
+									render() {
+										return <h1>Hello world!</h1>;
+									}
+								}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/BRRyZx?editors=0010)
+						</script>
+					</section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## Components are composable
+
+							```js
+								import React, { Component } from 'react';
+
+								function Welcome() {
+									return <h1>Hello world!</h1>;
+								}
+
+								function Application() {
+									return (
+										<div>
+											<Welcome />
+
+											<button>Click me</button>
+										</div>
+									)
+								}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/OmmWmN?editors=0010)
+						</script>
+					</section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Props</h2>
+
+            <p>A component can receive properties.</p>
+            <p>The properties are passed down by the parent.</p>
+          </section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## Passing props
+
+							```js
+								import React from 'react';
+
+								function Application() {
+									return (
+										<div>
+											<Welcome name={'Benjamim'} />
+
+											<button onClick={() => console.log('click')}>
+												Click me
+											</button>
+										</div>
+									)
+								}
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+            <script type="text/template">
+							## Receiving props
+
+							```js
+								import React, { Component } from 'react';
+
+								function Welcome(props) {
+									return <h1>Hello {props.name}!</h1>;
+								}
+
+								// Same as
+
+								class Welcome extends Component {
+									render() {
+										return <h1>Hello {this.props.name}!</h1>;
+									}
+								}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/BRRpRz?editors=0010)
+						</script>
+					</section>
+				</section>
+
+        <section>
+          <section>
+            <h2>State</h2>
+
+            <p>The state is updated by the component itself.</p>
+            <p>When the state is updated, the view will re-render itself.</p>
+						<p>Only class components can have state.</p>
+          </section>
+
+					<section data-markdown>
+						<script type="text/template">
+							## Rendering state
+
+"this.state" can be used to access state.
+
+							```js
+	class ClickCounter extends Component {
+		render() {
+			return (
+				<p>
+					You clicked {this.state.count} times.
+				</p>
+			);
+		}
+	}
+							```
+						</script>
+					</section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Updating state
+
+"this.setState" can be used to update state.
+
+              ```js
+	class ClickCounter extends Component {
+		increment() {
+			const newCount = this.state.count + 1;
+
+			this.setState({ count: newCount });
+		}
+	}
+							```
+						</script>
+					</section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Component with state
+
+              ```js
+	class ClickCounter extends Component {
+		increment() {
+			const newCount = this.state.count + 1;
+			this.setState({ count: newCount });
+		}
+
+		render() {
+			return (
+				<div>
+					<p>You clicked {this.state.count} times.</p>
+					<button onClick={this.increment} />
+				</div>
+			);
+		}
+	}
+              ```
+
+[Link](http://codepen.io/bsonntag/pen/GmmWQO?editors=0010)
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Children</h2>
+
+						<p>A component can receive children.</p>
+						<p>Children work as props.</p>
+          </section>
+
+          <section data-markdown>
+						<script type="text/template">
+							## Passing children
+
+							Pass children by nesting it like any other tag.
+
+							```js
+								function Application() {
+									return (
+										<Section title={'Example'}>
+											<p>
+												This is an example child.
+											</p>
+										</Section>
+									)
+								}
+							```
+						</script>
+					</section>
+
+          <section data-markdown>
+						<script type="text/template">
+							## Receiving children
+
+							Children will be in props.children
+
+							```js
+								function Section(props) {
+									return (
+										<div>
+											<h1>{props.title}</h1>
+
+											{props.children}
+										</div>
+									)
+								}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/Gmmzba?editors=0010)
+						</script>
+					</section>
+				</section>
+
+        <section>
+          <section>
+            <h2>Component methods and fields</h2>
+          </section>
+
+          <section>
+            <h2 style="text-transform: none">render()</h2>
+
+            <p>
+              Must return a React element,
+              that can be another component or a native DOM element (like a &ltdiv&gt).
+            </p>
+            <p>The render method is required.</p>
+          </section>
+
+					<section data-markdown>
+						<script type="text/template">
+							`this.props`
+
+							Give access to the props passed by the parent.
+
+							The default props can be set in a static property.
+
+							```js
+								class Welcome extends Component {
+									// ...
+								}
+
+								Welcome.defaultProps = {
+									name: 'World'
+								};
+							```
+
+							Props can only be changed by the parent.
+						</script>
+					</section>
+
+          <section data-markdown>
+						<script type="text/template">
+							`this.state`
+
+							Provides access to a component's state.
+
+							The initial state can be set in the constructor.
+
+							```js
+								class ClickCounter extends Component {
+									constructor(props) {
+										super(props);
+
+										this.state = {
+											count: 0
+										};
+									}
+								}
+							```
+
+							Should always be changed using "this.setState".
+						</script>
+          </section>
+
+					<section data-markdown>
+						<script type="text/template">
+							`this.setState(nextState)`
+
+							Merges nextState into the current state.
+
+							```js
+								class ClickCounter extends Component {
+									increment() {
+										const newCount = this.state.count + 1;
+
+										this.setState({ count: newCount });
+									}
+								}
+							```
+						</script>
+          </section>
+
+          <section data-markdown>
+						<script type="text/template">
+							`componentDidMount()`
+
+							Invoked immediately after a component is mounted.
+
+							```js
+								class Timer extends Component {
+									componentDidMount() {
+										setInterval(
+											() => this.setState({ date: new Date() }),
+											1000
+										);
+									}
+								}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/MmmLew?editors=0010)
+						</script>
+          </section>
+        </section>
+
+				<section>
+					<section>
+						<h2>Styling</h2>
+
+						<p>
+							Components can be stiled like normal HTML elements,
+							with CSS classes or inline styles.
+						</p>
+					</section>
+
+					<section data-markdown>
+						<script type="text/template">
+							## CSS class
+
+							```js
+							function Welcome() {
+								return (
+									<h1 className={'Message'}
+										Hello world!
+									</h1>
+								);
+							}
+							```
+
+							In a css file:
+
+							```
+							.Message {
+								background-color: red;
+								font-size: 60px;
+							}
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+						<script type="text/template">
+							## Inline styles
+
+							```js
+							const styles = {
+								message: {
+									backgroundColor: 'red',
+									fontSize: 60
+								}
+							});
+
+							function Welcome() {
+								return (
+									<h1 style={styles.message}>
+										Hello world!
+									</h1>
+								);
+							}
+							```
+
+							[Link](http://codepen.io/bsonntag/pen/YVVBNa)
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<h2>Try it out!</h2>
+
+					<p>
+						Start using React with
+						<a href="https://github.com/facebookincubator/create-react-app/">create-react-app</a>.
+					</p>
+				</section>
+
+        <section data-background="react-logo.svg" data-background-size="300px" data-background-transition="convex">
+        </section>
+
+        <section>
+          <h2>Questions?</h2>
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+
+					<ul>
+						<li>
+							React:
+							<a href="https://facebook.github.io/react/">
+								facebook.github.io/react
+							</a>
+						</li>
+
+						<li>
+							These slides:
+
+							<br>
+
+							<a href="https://bsonntag.github.io/react-introduction-talk/">
+								bsonntag.github.io/react-introduction-talk
+							</a>
+						</li>
+
+						<li>
+							create-react-app:
+
+							<br>
+
+							<a href="https://github.com/facebookincubator/create-react-app/">
+								github.com/facebookincubator/create-react-app
+							</a>
+						</li>
+					</ul>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
